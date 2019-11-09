@@ -19,16 +19,17 @@ body {
         text-align: center;
     }
 
-    .main-all-book {
-        .main-all-book-one {
-            margin-bottom: 1rem;
+    #books {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 1rem;
 
-            .main-all-book-one-card {
-                width: 18rem;
-                margin: auto;
-            }
-        }
+        // .main-card {
+        //     display: grid;
+        //     grid-template-columns: auto;
+        // }
     }
+
 }
 
 
@@ -50,6 +51,20 @@ body {
             width: 100%;
             margin-top: 1rem;
             text-align: center;
+        }
+
+        #books {
+            display: grid;
+            grid-template-columns: auto;
+        }
+    }
+}
+
+@media(min-width: 594px) and (max-width:992px) {
+    body {
+        #books {
+            display: grid;
+            grid-template-columns: auto auto;
         }
     }
 }
