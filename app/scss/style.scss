@@ -1,0 +1,55 @@
+@import 'settings.scss';
+
+body {
+
+
+    .main-nav {
+        justify-content: flex-start;
+        background-color: $bg-color-nav;
+
+        .main-nav-a {
+            color: white;
+        }
+    }
+
+    .main-title {
+        border: 1px solid black;
+        width: 35%;
+        margin: 1rem auto;
+        text-align: center;
+    }
+
+    .main-all-book {
+        .main-all-book-one {
+            margin-bottom: 1rem;
+
+            .main-all-book-one-card {
+                width: 18rem;
+                margin: auto;
+            }
+        }
+    }
+}
+
+
+@media(min-width: 100px) and (max-width:593px) {
+    body {
+
+
+        .main-nav {
+            justify-content: flex-start;
+            background-color: $bg-color-nav-width-below-593;
+
+            .main-nav-a {
+                color: white;
+            }
+        }
+
+        .main-title {
+            border: 1px solid black;
+            width: 100%;
+            margin-top: 1rem;
+            text-align: center;
+        }
+    }
+}
