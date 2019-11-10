@@ -23,16 +23,29 @@ body {
         display: grid;
         grid-template-columns: auto auto auto;
         gap: 1rem;
-
-        // .main-card {
-        //     display: grid;
-        //     grid-template-columns: auto;
-        // }
     }
 
 }
 
-.main-input {}
+.main-modal {
+    background-color: rgba(0, 0, 0, 0.4);
+
+    .main-modal-body {
+        display: grid;
+        grid-template-columns: auto;
+
+        .main-input {
+            border: none;
+            margin: 1rem;
+            border-bottom: 1px solid $bg-color-nav;
+
+            &:focus {
+                border-bottom: 1px solid red;
+            }
+
+        }
+    }
+}
 
 
 @media(min-width: 100px) and (max-width:593px) {
