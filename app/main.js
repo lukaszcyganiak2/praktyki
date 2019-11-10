@@ -59,14 +59,20 @@ function editeBook(book) {
 }
 
 function deleteBook(book) {
-    fetch(`http://localhost:3000/books/ + ${book.id}`, {
-        method: 'DELETE',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(book)
-    })
+    fetch(`http://localhost:3000/books/${book.id}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
+        .then(res => {
+            console.log(res)
+            getBooks()
+        })
+        .catch(err => {
+            console.error(err)
+        })
 
-    getBooks()
+
 
 }
