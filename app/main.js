@@ -29,11 +29,8 @@ function getBooks() {
                 card.appendChild(cardBody)
                 card.appendChild(cardFooter)
                 booksId.appendChild(card)
-
-
             });
         })
-
 }
 
 
@@ -54,8 +51,84 @@ function createdEl(el, attribute, attributeValue, text) {
 }
 
 
-function editeBook(book) {
-    console.log(book)
+function editeBook(element) {
+
+
+    const booksId = document.getElementById('books')
+
+    // główny div modala 
+    const modalDiv = createdEl('div', 'class', 'modal', '')
+    modalDiv.setAttribute('tabindex', '-1')
+    modalDiv.setAttribute('role', 'dialog')
+    const modalDialog = createdEl('div', 'class', 'modal-dialog', '')
+    modalDialog.setAttribute('role', "document")
+    const modalContent = createdEl('div', 'class', 'modal-content', '')
+
+    // header modal start 
+
+    const modalHeader = createdEl('div', 'class', 'modal-header', '')
+    const modalTitleH5 = createdEl('h5', 'class', 'modal-header', "Edytujesz książkę o id " + element.id)
+    const btnClose = createdEl('button', 'class', 'close', '')
+    btnClose.setAttribute('data-dismiss', 'modal')
+    btnClose.setAttribute('aria-label', 'Close')
+    const spanBtnClose = createdEl('span', 'aria-hidden', 'true', '&times;')
+    console.log("TCL: editeBook -> spanBtnClose", spanBtnClose)
+    // header modal dodawnie elementów  
+    modalHeader.appendChild(modalTitleH5)
+    btnClose.appendChild(spanBtnClose)
+    modalHeader.appendChild(btnClose)
+    // end header ----------------------- // 
+
+    // modal body tworzenie elementów 
+    const modalBody = createdEl('div', 'class', 'modal-body', '')
+    const inputTitle = createdEl('input', 'class', 'main-input', '')
+    inputTitle.value = element.title
+    const inputAuthor = createdEl('input', 'class', 'main-input', element.author)
+    const inputDescription = createdEl('input', 'class', 'main-input', element.description)
+    // modal body dodawnie elementów 
+    modalBody.appendChild(inputTitle)
+    modalBody.appendChild(inputAuthor)
+    modalBody.appendChild(inputDescription)
+    // end body -----------------------//
+
+    // modal-footer tworzenie elementów 
+    const modalFooter = createdEl('div', 'class', 'modal-footer', '')
+    const footerBtnClose = createdEl('button', 'class', 'btn btn-secondary', 'Close')
+    footerBtnClose.setAttribute('data-dismiss', 'modal')
+    const footerBtnSave = createdEl('button', 'class', 'btn btn-primary', 'Close')
+    footerBtnSave.onclick = function () {
+        saveBook(element)
+    }
+    // modal-footer body dodawnie elementów    
+    modalFooter.appendChild(footerBtnClose)
+    modalFooter.appendChild(footerBtnSave)
+    // end footer -----------------------//
+
+
+
+
+
+    // dodanie całości kontentu modala do jego głównego diva 
+
+    // pierwsza częci uzupełnienie <div class="modal-content">
+    modalContent.appendChild(modalHeader)
+    modalContent.appendChild(modalBody)
+    modalContent.appendChild(modalFooter)
+
+    // druga dodanie do <div class="modal-dialog" role="document"> <div class="modal-content"> 
+    modalDialog.appendChild(modalContent)
+
+    // trzeci dodanie do głównego diva tj.    
+    //< div class="modal" tabindex = "-1" role = "dialog" > uzupełnionego 
+    // <div class="modal-dialog" role="document"> w kroku drugim 
+
+    modalDiv.appendChild(modalDialog)
+    modalDiv.style.display = 'block'
+    console.log("TCL: editeBook -> modalDiv", modalDiv)
+    booksId.appendChild(modalDiv)
+
+
+
 }
 
 function deleteBook(book) {
@@ -72,7 +145,12 @@ function deleteBook(book) {
         .catch(err => {
             console.error(err)
         })
+}
 
-
+function saveBook(element) {
+    const modalDiv = document.getElementsByClassName('modal')[0]
+    console.log("TCL: saveBook -> modalDiv", modalDiv)
+    modalDiv.style.display = 'none'
+    console.log("TCL: saveBook -> element", element)
 
 }
