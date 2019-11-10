@@ -58,7 +58,7 @@ function editeBook(element) {
 
     // główny div modala 
     const modalDiv = createdEl('div', 'class', 'modal', '')
-    modalDiv.setAttribute('tabindex', '-1')
+    modalDiv.setAttribute('tabindex', '-3')
     modalDiv.setAttribute('role', 'dialog')
     const modalDialog = createdEl('div', 'class', 'modal-dialog', '')
     modalDialog.setAttribute('role', "document")
@@ -71,6 +71,9 @@ function editeBook(element) {
     const btnClose = createdEl('button', 'class', 'close', '')
     btnClose.setAttribute('data-dismiss', 'modal')
     btnClose.setAttribute('aria-label', 'Close')
+    btnClose.onclick = function () {
+        closeModal()
+    }
     const spanBtnClose = createdEl('span', 'aria-hidden', 'true', '&times;')
     console.log("TCL: editeBook -> spanBtnClose", spanBtnClose)
     // header modal dodawnie elementów  
@@ -95,7 +98,10 @@ function editeBook(element) {
     const modalFooter = createdEl('div', 'class', 'modal-footer', '')
     const footerBtnClose = createdEl('button', 'class', 'btn btn-secondary', 'Close')
     footerBtnClose.setAttribute('data-dismiss', 'modal')
-    const footerBtnSave = createdEl('button', 'class', 'btn btn-primary', 'Close')
+    footerBtnClose.onclick = function () {
+        closeModal()
+    }
+    const footerBtnSave = createdEl('button', 'class', 'btn btn-primary', 'Save')
     footerBtnSave.onclick = function () {
         saveBook(element)
     }
@@ -150,7 +156,12 @@ function deleteBook(book) {
 function saveBook(element) {
     const modalDiv = document.getElementsByClassName('modal')[0]
     console.log("TCL: saveBook -> modalDiv", modalDiv)
-    modalDiv.style.display = 'none'
+    modalDiv.remove();
     console.log("TCL: saveBook -> element", element)
 
+}
+
+function closeModal() {
+    const modalDiv = document.getElementsByClassName('modal')[0]
+    modalDiv.remove();
 }
