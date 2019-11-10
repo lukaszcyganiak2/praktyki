@@ -6,12 +6,7 @@ function getBooks() {
     fetch('http://localhost:3000/books')
         .then(books => books.json())
         .then(books => {
-            const a = sortowanie(books)
-            console.log("TCL: getBooks -> a", a)
-
-
             books.forEach(element => {
-
 
 
                 const card = createdEl('div', 'class', 'card main-card', '')
@@ -321,22 +316,4 @@ function newBook() {
             getBooks()
 
         })
-}
-
-let b
-
-function sortowanie(books) {
-
-    let idOld
-    books.forEach(element => {
-        sort(idOld, element.id)
-        idOld = element.id
-    })
-
-    return books
-
-}
-
-function sort(a, b) {
-    return b - a
 }
